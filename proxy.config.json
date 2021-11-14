@@ -1,6 +1,6 @@
 {
-	"/registrations/*":{
-		"target": "http://localhost:3000",
+	"/registration/*":{
+		"target": "http://localhost:4200",
 		"secure": false,
 		"logLevel": "debug"
 	}

@@ -174,6 +174,7 @@ export class ConfirmationDemo implements OnInit {
     paymentInformation: any;
     seatInformation: any;
     personalInformation: any;
+    reg:Registration;
 
     constructor(private dataService: DataService, public ticketService: TicketService, private router: Router) { }
 
@@ -187,40 +188,42 @@ export class ConfirmationDemo implements OnInit {
 
     complete() {
         let reg = new Registration();
-        reg.id = Math.floor(Math.random() * 1000);
-        this.personalInformation.id = reg.id;
+        reg.id =this.personalInformation.email;
         reg.firstname = this.personalInformation.firstname;
-        reg.mi = this.personalInformation.mi,
-        reg.lastname = this.personalInformation.lastname,
-        reg.dob = this.personalInformation.dob,
-        reg.gender = this.personalInformation.gender,
-        reg.maritalStatus = this.personalInformation.maritalStatus,
-        reg.mobilePhone = this.personalInformation.mobilePhone,
-        reg.email = this.personalInformation.email,
-        reg.contactMethod = this.personalInformation.contactMethod,
-        reg.preferredLanguage = this.personalInformation.preferredLanguage,
-        reg.ssn = this.personalInformation.ssn,
-        reg.driverLicenseState = this.personalInformation.driverLicenseState,
-        reg.driverLicenseNumber = this.personalInformation.driverLicenseNumber,
-        reg.address1 = this.seatInformation.address1,
-        reg.address2 = this.seatInformation.address2,
-        reg.city = this.seatInformation.city,
-        reg.state = this.seatInformation.state,
-        reg.zipCode = this.seatInformation.zipCode,
-        reg.monthlyPayment = this.seatInformation.monthlyPayment,
-        reg.movedWhen = this.seatInformation.movedWhen,
-        reg.rentOrOwn = this.seatInformation.rentOrOwn,
-        reg.employerName = this.paymentInformation.employerName,
-        reg.positionTitle = this.paymentInformation.positionTitle,
-        reg.monthlyIncome = this.paymentInformation.monthlyIncome,
-        reg.startDate = this.paymentInformation.startDate,
-        reg.fullPartTime = this.paymentInformation.fullPartTime
-        this.dataService.addReg(reg).subscribe(_ => {
+        reg.mi = this.personalInformation.mi;
+        reg.lastname = this.personalInformation.lastname;
+        reg.dob = this.personalInformation.dob;
+        reg.gender = this.personalInformation.gender;
+        reg.maritalstatus = this.personalInformation.maritalStatus;
+        reg.mobilephone = this.personalInformation.mobilePhone;
+        reg.email = this.personalInformation.email;
+        reg.contactmethod = this.personalInformation.contactMethod;
+        reg.preferredlanguage = this.personalInformation.preferredLanguage;
+        reg.ssn = this.personalInformation.ssn;
+        reg.driverlicensestate = this.personalInformation.driverLicenseState;
+        reg.driverlicensenumber = this.personalInformation.driverLicenseNumber;
+        reg.address1 = this.seatInformation.address1;
+        reg.address2 = this.seatInformation.address2;
+        reg.city = this.seatInformation.city;
+        reg.state = this.seatInformation.state;
+        reg.zipcode = this.seatInformation.zipCode;
+        reg.monthlypayment = this.seatInformation.monthlyPayment;
+        reg.movedwhen = this.seatInformation.movedWhen;
+        reg.rentorown = this.seatInformation.rentOrOwn;
+        reg.employername = this.paymentInformation.employerName;
+        reg.positiontitle = this.paymentInformation.positionTitle;
+        reg.monthlyincome = this.paymentInformation.monthlyIncome;
+        reg.startdate = this.paymentInformation.startDate;
+        reg.fullparttime = this.paymentInformation.fullPartTime;
+        reg.loanprocessingflag = "Yes";
+
+        this.dataService.addReg1(reg).subscribe(reg => {
+              this.reg = reg
       //Go back to the home page
-        
+            this.personalInformation.id = reg.id;
             this.ticketService.complete();
 
-          })
+          });
 
     }
 

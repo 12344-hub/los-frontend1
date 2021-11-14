@@ -67,7 +67,7 @@ import { DataService, Registration } from './data.service';
                             </div>
 
                             <div class="p-field p-col-12 p-md-6">
-                                <label for="riskIndex">Computed Risk riskIndex</label>
+                                <label for="riskIndex">Computed Risk Index</label>
                                 <input #riskIndex="ngModel" id="riskIndex" [(ngModel)]="personalInformation.riskindex" type="text"  readonly pInputText>
                             </div>
                           </div>
@@ -108,6 +108,7 @@ export class ConfirmationDemo2 implements OnInit {
     seatInformation: any;
     personalInformation: any;
     submitted: boolean = false;
+    reg1:any;
 
     constructor(private dataService: DataService, public ticketService: TicketService2, private router: Router) { }
 
@@ -131,39 +132,20 @@ export class ConfirmationDemo2 implements OnInit {
         {
           this.personalInformation.loanapprovedflag = "Approved";
         }
-        let reg = new Registration();
-
-        reg.id = this.personalInformation.id;
-        reg.firstname = this.personalInformation.firstname;
-        reg.mi = this.personalInformation.mi,
-        reg.lastname = this.personalInformation.lastname,
-        reg.dob = this.personalInformation.dob,
-        reg.gender = this.personalInformation.gender,
-        reg.maritalStatus = this.personalInformation.maritalStatus,
-        reg.mobilePhone = this.personalInformation.mobilePhone,
-        reg.email = this.personalInformation.email,
-        reg.contactMethod = this.personalInformation.contactMethod,
-        reg.preferredLanguage = this.personalInformation.preferredLanguage,
-        reg.ssn = this.personalInformation.ssn,
-        reg.driverLicenseState = this.personalInformation.driverLicenseState,
-        reg.driverLicenseNumber = this.personalInformation.driverLicenseNumber,
-        reg.address1 = this.seatInformation.address1,
-        reg.address2 = this.seatInformation.address2,
-        reg.city = this.seatInformation.city,
-        reg.state = this.seatInformation.state,
-        reg.zipCode = this.seatInformation.zipCode,
-        reg.monthlyPayment = this.seatInformation.monthlyPayment,
-        reg.movedWhen = this.seatInformation.movedWhen,
-        reg.rentOrOwn = this.seatInformation.rentOrOwn,
-        reg.employerName = this.paymentInformation.employerName,
-        reg.positionTitle = this.paymentInformation.positionTitle,
-        reg.monthlyIncome = this.paymentInformation.monthlyIncome,
-        reg.startDate = this.paymentInformation.startDate,
-        reg.fullPartTime = this.paymentInformation.fullPartTime
-        this.ticketService.complete();
-      }
+      //  let reg1 = new Registration();
+        this.dataService.getReg1(this.personalInformation.id).subscribe(reg => {
+              this.reg1 = reg.Item;
+              this.reg1.loanamount = this.personalInformation.loanAmount;
+              this.reg1.daterequired = this.personalInformation.dateRequired;
+              this.reg1.risksystemid = this.personalInformation.riskId;
+              this.reg1.riskindexvalue = this.personalInformation.riskindex;
+              this.reg1.loanapprovedflag =   this.personalInformation.loanapprovedflag;
+              this.dataService.addReg1(this.reg1).subscribe(_ => {});
+              this.ticketService.complete();
+      });
       this.submitted = true;
     }
+  }
 
     prevPage() {
         this.router.navigate(['steps2/personal']);

@@ -1,34 +1,46 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
+  headers= new HttpHeaders()
+   .set('content-type', 'application/json')
+   .set('access-control-allow-origin', '*');
+
   constructor(private http: HttpClient) { }
 
-  getRegs() : Observable<Registration[]> {
-    return this.http.get<Registration[]>("/registrations")
+//  getRegs() : Observable<Registration[]> {
+//    return this.http.get<Registration[]>("/registration")
+//  }
+
+  //getReg(id: number): Observable<Registration> {
+  //  return this.http.get<Registration>(`/registration/${id}`)
+  //}
+
+  getReg1(id: string): Observable<any> {
+    return this.http.get<any>(`https://qoh98vlv8g.execute-api.us-east-2.amazonaws.com/items/${id}`, {'headers': this.headers})
   }
 
-  getReg(id: number): Observable<Registration> {
-    return this.http.get<Registration>(`/registrations/${id}`)
+//  deleteReg(id: number): Observable<any> {
+//    return this.http.delete(`/registration/${id}`)
+//  }
+
+  addReg1(reg: Registration): Observable<any> {
+    return this.http.put(`https://qoh98vlv8g.execute-api.us-east-2.amazonaws.com/items`, reg, {'headers': this.headers} )
   }
 
-  deleteReg(id: number): Observable<any> {
-    return this.http.delete(`/registrations/${id}`)
-  }
+  //addReg(reg: Registration): Observable<any> {
+  //  return this.http.post(`/registration`, reg)
+  //}
 
-  addReg(reg: Registration): Observable<any> {
-    return this.http.post(`/registrations`, reg)
-  }
-
-  saveReg(reg: Registration): Observable<any> {
-	  let url:string = `/registrations/${reg.id}`
-    return this.http.put(url, reg)
-  }
+  //saveReg(reg: Registration): Observable<any> {
+  //  return this.http.put(`/registration/${reg.id}`, reg)
+  //}
 
 }
 
@@ -38,63 +50,73 @@ export class Registration {
   firstname: string;
   mi?: string;
   lastname: string;
-  dob: string;
+  dob: Date;
   gender: string;
-  maritalStatus: string;
-  mobilePhone: string;
+  maritalstatus: string;
+  mobilephone: string;
   email: string;
-  contactMethod: string;
-  preferredLanguage: string;
+  contactmethod: string;
+  preferredlanguage: string;
   ssn: string;
-  driverLicenseState: string;
-  driverLicenseNumber: string;
+  driverlicensestate: string;
+  driverlicensenumber: string;
   address1: string;
   address2?:string;
   city:string;
   state:string;
-  zipCode:string;
-  monthlyPayment:string;
-  movedWhen:string;
-  rentOrOwn:string;
-  employerName:string;
-  positionTitle:string;
-  monthlyIncome:string;
-  startDate:string;
-  fullPartTime:string;
+  zipcode:string;
+  monthlypayment:number;
+  movedwhen:Date;
+  rentorown:string;
+  employername:string;
+  positiontitle:string;
+  monthlyincome:number;
+  startdate:Date;
+  fullparttime:string;
+  loanprocessingflag: string;
+  loanamount: number;
+  daterequired: Date;
+  risksystemid: string;
+  riskindexvalue: number;
+  loanapprovedflag: string;
+
 
   constructor() {
-    this.id = '0';
+    this.id = '';
     this.firstname = '';
     this.mi = '';
     this.lastname = '';
-    this.dob = '';
+    this.dob = null;
     this.gender = '';
-    this.maritalStatus = '';
-    this.mobilePhone = '';
+    this.maritalstatus = '';
+    this.mobilephone = '';
     this.email = '';
-    this.contactMethod = '';
-    this.preferredLanguage = '';
+    this.contactmethod = '';
+    this.preferredlanguage = '';
     this.ssn = '';
-    this.driverLicenseState = '';
-    this.driverLicenseNumber = '';
+    this.driverlicensestate = '';
+    this.driverlicensenumber = '';
     this.address1 = '';
     this.address2 = '';
     this.city = '';
     this.state = '';
-    this.zipCode = '';
-    this.monthlyPayment = '';
-    this.movedWhen = '';
-    this.rentOrOwn = '';
-    this.employerName = '';
-    this.positionTitle = '';
-    this.monthlyIncome = '';
-    this.startDate = '';
-    this.fullPartTime = '';
-    loanapprovedflag: '',
-    riskindex: '',
-    loanAmount: '',
-    dateRequired: ''
+    this.zipcode = '';
+    this.monthlypayment = null;
+    this.movedwhen = null;
+    this.rentorown = '';
+    this.employername = '';
+    this.positiontitle = '';
+    this.monthlyincome = null;
+    this.startdate = null;
+    this.fullparttime = '';
+    this.loanprocessingflag = '';
+    this.loanamount = null;
+    this.daterequired = null;
+    this.risksystemid = '';
+    this.riskindexvalue = null;
+    this.loanapprovedflag = '';
     }
+
 }
 
 export class Book {

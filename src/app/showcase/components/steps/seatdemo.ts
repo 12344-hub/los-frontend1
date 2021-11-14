@@ -110,7 +110,7 @@ import { Router } from '@angular/router';
                        <div class="p-field">
 
                             <label for="movedWhen">Move-in Date</label>
-                            <input required #movedWhen="ngModel" id="movedWhen" [(ngModel)]="seatInformation.movedWhen" [ngClass]="{'ng-dirty': (movedWhen.invalid && submitted) || (movedWhen.dirty && movedWhen.invalid)}" type='month' min='1960-01' pInputText inputId="movedWhen">
+                            <input required #movedWhen="ngModel" id="movedWhen" [(ngModel)]="seatInformation.movedWhen" [ngClass]="{'ng-dirty': (movedWhen.invalid && submitted) || (movedWhen.dirty && movedWhen.invalid)}" type='date' min='1960-01' pInputText inputId="movedWhen">
                             <small *ngIf="(movedWhen.invalid && submitted) || (movedWhen.dirty && movedWhen.invalid)" class="p-error">Move-in Date is required.</small>
                        </div>
 

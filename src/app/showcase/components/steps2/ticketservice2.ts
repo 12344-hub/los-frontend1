@@ -11,7 +11,7 @@ export class TicketService2 {
           firstname: '',
           mi: '',
           lastname: '',
-          dob: '',
+          dob: null,
           gender: '',
           maritalStatus: '',
           mobilePhone: '',
@@ -22,9 +22,9 @@ export class TicketService2 {
           driverLicenseState: '',
           driverLicenseNumber: '',
           loanapprovedflag: '',
-          riskindex: '',
-          loanAmount: '',
-          dateRequired: ''
+          riskindex: null,
+          loanAmount: null,
+          dateRequired: null
       },
       seatInformation: {
           address1: '',
@@ -32,16 +32,16 @@ export class TicketService2 {
           city:'',
           state:'',
           zipCode:'',
-          monthlyPayment:'',
-          movedWhen:'',
+          monthlyPayment:null,
+          movedWhen:null,
           rentOrOwn:'',
           forHowLong:''
       },
       paymentInformation: {
           employerName:'',
           positionTitle:'',
-          monthlyIncome:'',
-          startDate:'',
+          monthlyIncome:null,
+          startDate:null,
           fullPartTime:'',
           lessThanThreeYears:''
       }

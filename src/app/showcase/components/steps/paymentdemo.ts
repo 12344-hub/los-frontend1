@@ -34,7 +34,7 @@ import { Router } from '@angular/router';
 
                      <div class="p-field">
                            <label for="startDate">Start Date</label>
-                          <input required #startDate="ngModel" id="startDate" [(ngModel)]="paymentInformation.startDate" [ngClass]="{'ng-dirty': (startDate.invalid && submitted) || (startDate.dirty && startDate.invalid)}" type='month' min='1960-01' pInputText inputId="startDate">
+                          <input required #startDate="ngModel" id="startDate" [(ngModel)]="paymentInformation.startDate" [ngClass]="{'ng-dirty': (startDate.invalid && submitted) || (startDate.dirty && startDate.invalid)}" type='date' min='1960-01' pInputText inputId="startDate">
                           <small *ngIf="(startDate.invalid && submitted) || (startDate.dirty && startDate.invalid)" class="p-error">Start Date is required.</small>
                      </div>
 
